@@ -269,24 +269,24 @@ local에서 작동하므로 ingress 없이
 
     - Realm Master에 대한 access_token 조회:
 
-          **POST  Obtain access token for a user**
+        **POST  Obtain access token for a user**
 
-          url: `http://localhost:8080/auth/realms/master/protocol/openid-connect/token`
+        url: `http://localhost:8080/auth/realms/master/protocol/openid-connect/token`
 
-          **Headers**: Content-Type : application/x-www-form-urlencoded
+        **Headers**: Content-Type : application/x-www-form-urlencoded
 
-          **Body :**  
+        **Body :**  
 
-          ![img/Untitled%206.png](img/Untitled%206.png)
+        ![img/Untitled%206.png](img/Untitled%206.png)
 
-          ```bash
-          curl --location --request POST 'http://127.0.0.1:8180/auth/realms/master/protocol/openid-connect/token' \
-          --header 'Content-Type: application/x-www-form-urlencoded' \
-          --data-urlencode 'client_id=admin-cli' \
-          --data-urlencode 'username=<master realm login 시 이용하는 username>' \
-          --data-urlencode 'password=<master realm login 시 이용하는 password>' \
-          --data-urlencode 'grant_type=password'
-          ```
+        ```bash
+        curl --location --request POST 'http://127.0.0.1:8180/auth/realms/master/protocol/openid-connect/token' \
+        --header 'Content-Type: application/x-www-form-urlencoded' \
+        --data-urlencode 'client_id=admin-cli' \
+        --data-urlencode 'username=<master realm login 시 이용하는 username>' \
+        --data-urlencode 'password=<master realm login 시 이용하는 password>' \
+        --data-urlencode 'grant_type=password'
+        ```
 
     - 회원가입 :
 
