@@ -113,7 +113,7 @@ docker-desktop의 setting — resource > memory를 올려주어라!
 
          but, 우리는 Master가 아닌 MSA에서 사용할 Realm이 필요하기때문에 생성
 
-        ![SSO%2027114887259f41778ce13513e1aa28d7/Untitled.png](SSO%2027114887259f41778ce13513e1aa28d7/Untitled.png)
+        ![SSO/img/Untitled.png](SSO%2027114887259f41778ce13513e1aa28d7/Untitled.png)
 
         "Add realm"로 생성
 
@@ -126,7 +126,7 @@ docker-desktop의 setting — resource > memory를 올려주어라!
 
         <사용하고자하는 realm>환경임을 확인 -> Manage -> Users 클릭 -> Add User 클릭한다
 
-        ![SSO%2027114887259f41778ce13513e1aa28d7/Untitled%201.png](SSO%2027114887259f41778ce13513e1aa28d7/Untitled%201.png)
+        ![SSO/img/Untitled%201.png](SSO%2027114887259f41778ce13513e1aa28d7/Untitled%201.png)
 
         이후 생성되면 "credentials"탭에서 유저에게 임시비밀번호 발급해준다 (Set Password)해줌
 
@@ -134,11 +134,11 @@ docker-desktop의 setting — resource > memory를 올려주어라!
         - gitlab 과 SAML 로 SSO 를 할꺼니깐 설정해줘야함
         - client 생성 시 "SAML"  Protocol로 생성 >> 이후 아래와 같이 설정
 
-        ![SSO%2027114887259f41778ce13513e1aa28d7/Untitled%202.png](SSO%2027114887259f41778ce13513e1aa28d7/Untitled%202.png)
+        ![SSO/img/Untitled%202.png](SSO/img/Untitled%202.png)
 
-        ![SSO%2027114887259f41778ce13513e1aa28d7/Untitled%203.png](SSO%2027114887259f41778ce13513e1aa28d7/Untitled%203.png)
+        ![SSO/img/Untitled%203.png](SSO/img/Untitled%203.png)
 
-        ![SSO%2027114887259f41778ce13513e1aa28d7/Untitled%204.png](SSO%2027114887259f41778ce13513e1aa28d7/Untitled%204.png)
+        ![SSO/img/Untitled%204.png](SSO/img/Untitled%204.png)
 
         IDP initiated SSO URL Name = client명과 같게 해주기
 
@@ -274,7 +274,7 @@ docker-desktop의 setting — resource > memory를 올려주어라!
 
         **Body :**  
 
-        ![SSO%2027114887259f41778ce13513e1aa28d7/Untitled%206.png](SSO%2027114887259f41778ce13513e1aa28d7/Untitled%206.png)
+        ![SSO/img/Untitled%206.png](SSO/img/Untitled%206.png)
 
         ```bash
         curl --location --request POST 'http://127.0.0.1:8180/auth/realms/master/protocol/openid-connect/token' \
