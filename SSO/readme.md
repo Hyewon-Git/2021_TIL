@@ -2,7 +2,7 @@
 
 **📌   목표 - Gitlab을 Keycloak SAML방식을 이용한 SSO 환경 구축**
 
-- 구축 환경
+  - 구축 환경 
 
     docker-desktop (mac) & kubernetes
 
@@ -88,8 +88,8 @@ local에서 작동하므로 ingress 없이
             spec:
                 ports:
                 - nodePort: 30010 # Random assignment from 30000 to 32767, if omitted
-            	  port: 80 # Allocate the same value as targetPort if omitted
-            	  targetPort: 80
+                    port: 80 # Allocate the same value as targetPort if omitted
+                    targetPort: 80
               selector:
                 app: gitlab
             ```
@@ -98,9 +98,8 @@ local에서 작동하므로 ingress 없이
 
          바로 직후엔  ~~curl: (52) Empty reply from server이거나  502 whoops something went wrong on our end 에러뜸~~
 
-> gitlab설치 후 잘 안돌아가면 —> kubernetes  문제임
-
-    docker-desktop의 setting — resource > memory를 올려주어라!
+> gitlab설치 후 잘 안돌아가면 —> kubernetes  문제임 
+>   docker-desktop의 setting — resource > memory를 올려주어라!
 
 ---
 ### Keycloak - Gitlab 연동
@@ -109,8 +108,7 @@ local에서 작동하므로 ingress 없이
 
 - Keycloak setting
 
-    [http://localhost:8080/auth](http://localhost:8080/auth) 
-
+    [http://localhost:8080/auth](http://localhost:8080/auth) 로
     처음 접근시: [master realm = admin]계정으로 접근 (`아이디 admin/ 비번 admin` : keycloak설치시 yaml파일에서 초기 아이디,비번 지정해줌)
 
     1. realm 생성
@@ -126,7 +124,7 @@ local에서 작동하므로 ingress 없이
         Realm Settings 에서 
         { 일반설정, 로그인 화면 설정, 키 암호화 설정, 이메일 서비스 설정, 로그인/회원가입 등의 테마 설정, 캐시 설정, 토큰 설정} 등 —— > 필요시 공식문서 참고할것!
 
-    2. user 생성
+    1. user 생성
 
         realms 안에서 관리자를 통해 유저를 생성할 수 있다.
 
