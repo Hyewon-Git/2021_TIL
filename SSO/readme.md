@@ -11,9 +11,7 @@
         1. Keycloak pod 띄우기
         2. gitlab pod 띄우기
         3. Keycloak -gitlab SSO 환경구축
-
             SAML 방식이용
-
         4. Keycloak API 이용
 ---
 
@@ -33,9 +31,9 @@ local에서 작동하므로 ingress 없이
 nginx 컨테이너 nodeport로 expose
     저절로  loadbalancer 의 External_IP가  localhost로 설정됨
     어떻게 이렇게 작동된지는 모르겠음!! 원래 local에서는 loadbalancer실행 X
-    
     Keycloak 페이지 주소 : http://localhost:8080
 
+---
 ### Gitlab 설치
 
 두가지 방법 중 선택 (여기서는 2번방법 이용)
@@ -97,6 +95,7 @@ nginx 컨테이너 nodeport로 expose
 
 docker-desktop의 setting — resource > memory를 올려주어라!
 
+---
 ### Keycloak - Gitlab 연동
 
 여기서는 keycloak의  SAML 방식이용
@@ -126,7 +125,7 @@ docker-desktop의 setting — resource > memory를 올려주어라!
 
         <사용하고자하는 realm>환경임을 확인 -> Manage -> Users 클릭 -> Add User 클릭한다
 
-        ![SSO/img/Untitled%201.png](SSO%2027114887259f41778ce13513e1aa28d7/Untitled%201.png)
+        ![img/Untitled%201.png](img/Untitled%201.png)
 
         이후 생성되면 "credentials"탭에서 유저에게 임시비밀번호 발급해준다 (Set Password)해줌
 
@@ -134,11 +133,11 @@ docker-desktop의 setting — resource > memory를 올려주어라!
         - gitlab 과 SAML 로 SSO 를 할꺼니깐 설정해줘야함
         - client 생성 시 "SAML"  Protocol로 생성 >> 이후 아래와 같이 설정
 
-        ![SSO/img/Untitled%202.png](SSO/img/Untitled%202.png)
+        ![img/Untitled%202.png](img/Untitled%202.png)
 
-        ![SSO/img/Untitled%203.png](SSO/img/Untitled%203.png)
+        ![img/Untitled%203.png](img/Untitled%203.png)
 
-        ![SSO/img/Untitled%204.png](SSO/img/Untitled%204.png)
+        ![img/Untitled%204.png](img/Untitled%204.png)
 
         IDP initiated SSO URL Name = client명과 같게 해주기
 
@@ -194,7 +193,7 @@ docker-desktop의 setting — resource > memory를 올려주어라!
 
             Realm Settings > Keys> Public Keys의  Certificate정보 (클릭하여 값 복사하기)
 
-            ![SSO%2027114887259f41778ce13513e1aa28d7/Untitled%205.png](SSO%2027114887259f41778ce13513e1aa28d7/Untitled%205.png)
+            ![img/Untitled%205.png](img/Untitled%205.png)
 
         - OmniAuth 공급자 중 "SAML" 사용
 
