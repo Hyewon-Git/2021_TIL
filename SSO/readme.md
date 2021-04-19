@@ -8,9 +8,9 @@
 
     **local**에서 작동
 
-        1. Keycloak pod 띄우기
-        2. gitlab pod 띄우기
-        3. Keycloak -gitlab SSO 환경구축
+        [1. Keycloak pod 띄우기](#Keycloak 설치)
+        [2. gitlab pod 띄우기](#Gitlab 설치)
+        [3. Keycloak -gitlab SSO 환경구축](#Keycloak - Gitlab 연동)
             SAML 방식이용
         4. Keycloak API 이용
 ---
@@ -25,7 +25,7 @@ local에서 작동하므로 ingress 없이
 
 1. `kubectl edit svc keycloak` 해서 loadbalancer 를 NodePort로 바꿔주던가
 
-    Keycloak 페이지 주소 : http://localhost:<nodeport>
+    Keycloak 페이지 주소 : <http://localhost:<nodeport>>
 
 2. kecloack **설치 이전**에 (keycloak을 먼저설치하면 pending상태로 지속됨)
 nginx 컨테이너 nodeport로 expose
