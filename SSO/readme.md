@@ -99,7 +99,7 @@ local에서 작동하므로 ingress 없이
          바로 직후엔  ~~curl: (52) Empty reply from server이거나  502 whoops something went wrong on our end 에러뜸~~
 
 > gitlab설치 후 잘 안돌아가면 —> kubernetes  문제임 
->   >> docker-desktop의 setting — resource > memory를 올려주어라!
+> .  >> docker-desktop의 setting — resource > memory를 올려주어라!
 
 ---
 ### Keycloak - Gitlab 연동
