@@ -82,8 +82,8 @@ nginx 컨테이너 nodeport로 expose
             	name: gitlab-service
             spec:
             	ports:
-            	- nodePort: 30010 # Random assignment from 30000 to 32767, if omitted
-            	  port: 80 # Allocate the same value as targetPort if omitted
+                - nodePort: 30010 # Random assignment from 30000 to 32767, if omitted
+                - port: 80 # Allocate the same value as targetPort if omitted
             	  targetPort: 80
             	selector:
             	  app: gitlab
