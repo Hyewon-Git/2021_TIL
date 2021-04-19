@@ -9,7 +9,9 @@
     **local**에서 작동
     
     [1. Keycloak pod 띄우기](#Keycloak 설치)
+    
     [2. gitlab pod 띄우기](#Gitlab 설치)
+    
     [3. Keycloak -gitlab SSO 환경구축](#Keycloak - Gitlab 연동)
         SAML 방식이용
     4. Keycloak API 이용
