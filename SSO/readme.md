@@ -240,6 +240,8 @@ local에서 작동하므로 ingress 없이
 
         log 확인 `cat /var/log/gitlab/gitlab-rails/production.log`
 
+***
+
 ### Keycloak 기타 설정
 
 - **keycloak 로그인 페이지 꾸미기**
