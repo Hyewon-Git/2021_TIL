@@ -99,7 +99,7 @@ local에서 작동하므로 ingress 없이
          바로 직후엔  ~~curl: (52) Empty reply from server이거나  502 whoops something went wrong on our end 에러뜸~~
 
 > gitlab설치 후 잘 안돌아가면 —> kubernetes  문제임 
->   docker-desktop의 setting — resource > memory를 올려주어라!
+>   >> docker-desktop의 setting — resource > memory를 올려주어라!
 
 ---
 ### Keycloak - Gitlab 연동
@@ -204,7 +204,7 @@ local에서 작동하므로 ingress 없이
 
              [https://www.debyum.com/configure-gitlab-with-keycloak/](https://www.debyum.com/configure-gitlab-with-keycloak/)
 
-            [https://edenmal.moe/post/2018/GitLab-Keycloak-SAML-2-0-OmniAuth-Provider/?__cf_chl_captcha_tk__=abd99e96a0b76ba86f74686fd3ca96783d87b8d8-1618449110-0-Ac7yEOdq9cMmxXtZ05mffkm-WEt8xo_NfputD_f27Rqzh4jehkrLXH_jkbLwf7bbJrjdOEY8aJpa2IGwBfeWITecHQiJBG2N1taIvwrSsk9uvPv4EZP76YucqgQyQq-6mXR5x8hp2UG-ODDV-lT26fwpCBFqk3robXjakxTOShSjjSJOLXczyuc5KjOIJfQrCtrc4tsYquXSoUts953hqNyBPC1qObV5emUjzKYG8KULaYfpkYdji8vtX1cZNCPDpd7eKKjJRey6V4Ce8icUqaDf3bVIdMGmbHMBGTcuwRBFJZW5VI-feIe7m7UvbFmQZ0uV2yVqw9CDLOJAtlxwgVS8ZDht1hHM2Znt7dP8sDCOJ7BxkDYVccsjTK5bsg61w5qFZ8eBr3Xrfpw1KpfMtMXeAgp_VUSKeORiC4d2wwb9d0MXsXIqt1-cYb3xUUgocThJkLnPp3FaHktPV_Z-OMUye9UQmWI3_h-fAHzIbKR5lOCg0W6bHYhxfKv0dfCkwc0Lq46jSTAYbB2yxW5mXufairq7ABdKz29Cg1hH_giXL5n6dUGrBgTUgD7l6NqLFkWc9MBjOCoTfmZwt1VgExMDZEiYPsbObcCXgCJpMi-Q2A20D7byhu47SHNg5rbwlg8aIq5KD7nY_MID1qc2aCT7xKa4hON1vgf_86uG-nCW](https://edenmal.moe/post/2018/GitLab-Keycloak-SAML-2-0-OmniAuth-Provider/?__cf_chl_captcha_tk__=abd99e96a0b76ba86f74686fd3ca96783d87b8d8-1618449110-0-Ac7yEOdq9cMmxXtZ05mffkm-WEt8xo_NfputD_f27Rqzh4jehkrLXH_jkbLwf7bbJrjdOEY8aJpa2IGwBfeWITecHQiJBG2N1taIvwrSsk9uvPv4EZP76YucqgQyQq-6mXR5x8hp2UG-ODDV-lT26fwpCBFqk3robXjakxTOShSjjSJOLXczyuc5KjOIJfQrCtrc4tsYquXSoUts953hqNyBPC1qObV5emUjzKYG8KULaYfpkYdji8vtX1cZNCPDpd7eKKjJRey6V4Ce8icUqaDf3bVIdMGmbHMBGTcuwRBFJZW5VI-feIe7m7UvbFmQZ0uV2yVqw9CDLOJAtlxwgVS8ZDht1hHM2Znt7dP8sDCOJ7BxkDYVccsjTK5bsg61w5qFZ8eBr3Xrfpw1KpfMtMXeAgp_VUSKeORiC4d2wwb9d0MXsXIqt1-cYb3xUUgocThJkLnPp3FaHktPV_Z-OMUye9UQmWI3_h-fAHzIbKR5lOCg0W6bHYhxfKv0dfCkwc0Lq46jSTAYbB2yxW5mXufairq7ABdKz29Cg1hH_giXL5n6dUGrBgTUgD7l6NqLFkWc9MBjOCoTfmZwt1VgExMDZEiYPsbObcCXgCJpMi-Q2A20D7byhu47SHNg5rbwlg8aIq5KD7nY_MID1qc2aCT7xKa4hON1vgf_86uG-nCW)
+            [https://edenmal.moe/post/2018/GitLab-Keycloak-SAML-2-0-OmniAuth-Provider](https://edenmal.moe/post/2018/GitLab-Keycloak-SAML-2-0-OmniAuth-Provider/?__cf_chl_captcha_tk__=abd99e96a0b76ba86f74686fd3ca96783d87b8d8-1618449110-0-Ac7yEOdq9cMmxXtZ05mffkm-WEt8xo_NfputD_f27Rqzh4jehkrLXH_jkbLwf7bbJrjdOEY8aJpa2IGwBfeWITecHQiJBG2N1taIvwrSsk9uvPv4EZP76YucqgQyQq-6mXR5x8hp2UG-ODDV-lT26fwpCBFqk3robXjakxTOShSjjSJOLXczyuc5KjOIJfQrCtrc4tsYquXSoUts953hqNyBPC1qObV5emUjzKYG8KULaYfpkYdji8vtX1cZNCPDpd7eKKjJRey6V4Ce8icUqaDf3bVIdMGmbHMBGTcuwRBFJZW5VI-feIe7m7UvbFmQZ0uV2yVqw9CDLOJAtlxwgVS8ZDht1hHM2Znt7dP8sDCOJ7BxkDYVccsjTK5bsg61w5qFZ8eBr3Xrfpw1KpfMtMXeAgp_VUSKeORiC4d2wwb9d0MXsXIqt1-cYb3xUUgocThJkLnPp3FaHktPV_Z-OMUye9UQmWI3_h-fAHzIbKR5lOCg0W6bHYhxfKv0dfCkwc0Lq46jSTAYbB2yxW5mXufairq7ABdKz29Cg1hH_giXL5n6dUGrBgTUgD7l6NqLFkWc9MBjOCoTfmZwt1VgExMDZEiYPsbObcCXgCJpMi-Q2A20D7byhu47SHNg5rbwlg8aIq5KD7nY_MID1qc2aCT7xKa4hON1vgf_86uG-nCW)
 
             [https://gist.github.com/int128/ab5839d5f59829840a0204f0c8cd8a8b](https://gist.github.com/int128/ab5839d5f59829840a0204f0c8cd8a8b)
 
@@ -226,8 +226,7 @@ local에서 작동하므로 ingress 없이
                   name: 'saml',
                   args: {
                            assertion_consumer_service_url: 'http://localhost:30010/users/auth/saml/callback',
-                           idp_cert:  "-----BEGIN CERTIFICATE-----
-            \n<...인증서정보 복사해서 붙여넣기....>\n-----END CERTIFICATE-----\n",
+                           idp_cert:  "-----BEGIN CERTIFICATE-----\n<...인증서정보 복사해서 붙여넣기....>\n-----END CERTIFICATE-----\n",
                            idp_sso_target_url: 'http://localhost:8080/auth/realms/dudaji-200/protocol/saml/clients/gitlab',
                            issuer: 'gitlab',
                            name_identifier_format: 'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent'
@@ -250,9 +249,9 @@ local에서 작동하므로 ingress 없이
     1. kubernetes 위에 있는 Pod ( Keycloak container)로 진입
     2. keycloak의 theme 폴더로 진입
 
-        #. Keycloak의 기본페이지 `$JBOSS_HOME` ⇒ /opt/jboss/keycloak
+          #. Keycloak의 기본페이지 `$JBOSS_HOME` ⇒ /opt/jboss/keycloak
 
-        `cd /opt/jboss/keycloak/themes`
+          `cd /opt/jboss/keycloak/themes`
 
     3. theme폴더에서 새로운 나만의 폴더 생성
 
@@ -266,28 +265,28 @@ local에서 작동하므로 ingress 없이
     parameter 에 대한 부연 설명: 
     [https://www.keycloak.org/docs-api/12.0/rest-api/#_userrepresentation](https://www.keycloak.org/docs-api/12.0/rest-api/#_userrepresentation)
 
-    Test가능한 Postman 공식페이지 : [https://documenter.getpostman.com/view/7294517/SzmfZHnd#e917ce53-69ea-49f3-9a94-4f6c0962c199](https://documenter.getpostman.com/view/7294517/SzmfZHnd#e917ce53-69ea-49f3-9a94-4f6c0962c199)
+    Test가능한 Postman 공식페이지 : [https://documenter.getpostman.com/view](https://documenter.getpostman.com/view/7294517/SzmfZHnd#e917ce53-69ea-49f3-9a94-4f6c0962c199)
 
     - Realm Master에 대한 access_token 조회:
 
-        **POST  Obtain access token for a user**
+          **POST  Obtain access token for a user**
 
-        url: `http://localhost:8080/auth/realms/master/protocol/openid-connect/token`
+          url: `http://localhost:8080/auth/realms/master/protocol/openid-connect/token`
 
-        **Headers**: Content-Type : application/x-www-form-urlencoded
+          **Headers**: Content-Type : application/x-www-form-urlencoded
 
-        **Body :**  
+          **Body :**  
 
-        ![img/Untitled%206.png](img/Untitled%206.png)
+          ![img/Untitled%206.png](img/Untitled%206.png)
 
-        ```bash
-        curl --location --request POST 'http://127.0.0.1:8180/auth/realms/master/protocol/openid-connect/token' \
-        --header 'Content-Type: application/x-www-form-urlencoded' \
-        --data-urlencode 'client_id=admin-cli' \
-        --data-urlencode 'username=<master realm login 시 이용하는 username>' \
-        --data-urlencode 'password=<master realm login 시 이용하는 password>' \
-        --data-urlencode 'grant_type=password'
-        ```
+          ```bash
+          curl --location --request POST 'http://127.0.0.1:8180/auth/realms/master/protocol/openid-connect/token' \
+          --header 'Content-Type: application/x-www-form-urlencoded' \
+          --data-urlencode 'client_id=admin-cli' \
+          --data-urlencode 'username=<master realm login 시 이용하는 username>' \
+          --data-urlencode 'password=<master realm login 시 이용하는 password>' \
+          --data-urlencode 'grant_type=password'
+          ```
 
     - 회원가입 :
 
