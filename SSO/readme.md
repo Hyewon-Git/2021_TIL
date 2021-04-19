@@ -13,7 +13,7 @@
     [2. gitlab pod 띄우기](#gitlab-설치)
 
     [3. Keycloak -gitlab SSO 환경구축](#keycloak---gitlab-연동)
-     .  SAML 방식이용
+     (SAML 방식이용)
 
     [4. Keycloak API 이용](#keycloak-기타-설정)
 ---
@@ -22,7 +22,7 @@
 
 local에서 작동하므로 ingress 없이 
 
-`kubectl create -f [https://raw.githubusercontent.com/keycloak/keycloak-quickstarts/latest/kubernetes-examples/keycloak.yaml](https://raw.githubusercontent.com/keycloak/keycloak-quickstarts/latest/kubernetes-examples/keycloak.yaml)`
+`kubectl create -f https://raw.githubusercontent.com/keycloak/keycloak-quickstarts/latest/kubernetes-examples/keycloak.yaml`
 
 두가지 방법 중 선택
 
@@ -84,23 +84,23 @@ local에서 작동하므로 ingress 없이
             apiVersion: v1
             kind: Service
             metadata:
-            	name: gitlab-service
+                name: gitlab-service
             spec:
-            	ports:
-            	- nodePort: 30010 # Random assignment from 30000 to 32767, if omitted
+                ports:
+                - nodePort: 30010 # Random assignment from 30000 to 32767, if omitted
             	  port: 80 # Allocate the same value as targetPort if omitted
             	  targetPort: 80
-            	selector:
-            	  app: gitlab
+              selector:
+                app: gitlab
             ```
 
         gitlab은 실행된 이후 5분정도 이후에 접속가능
 
-        >> 바로 직후엔  ~~curl: (52) Empty reply from server이거나  502 whoops something went wrong on our end 에러뜸~~
+         바로 직후엔  ~~curl: (52) Empty reply from server이거나  502 whoops something went wrong on our end 에러뜸~~
 
-#. gitlab설치 후 잘 안돌아가면 —> kubernetes  문제임
+> gitlab설치 후 잘 안돌아가면 —> kubernetes  문제임
 
-docker-desktop의 setting — resource > memory를 올려주어라!
+    docker-desktop의 setting — resource > memory를 올려주어라!
 
 ---
 ### Keycloak - Gitlab 연동
@@ -109,7 +109,7 @@ docker-desktop의 setting — resource > memory를 올려주어라!
 
 - Keycloak setting
 
-    [http://localhost:8080/auth](http://localhost:8080/auth로) 
+    [http://localhost:8080/auth](http://localhost:8080/auth) 
 
     처음 접근시: [master realm = admin]계정으로 접근 (`아이디 admin/ 비번 admin` : keycloak설치시 yaml파일에서 초기 아이디,비번 지정해줌)
 
