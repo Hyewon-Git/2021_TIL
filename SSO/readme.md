@@ -1,12 +1,12 @@
 # SSO
 
-**📌   <span style="color:red">목표 - Gitlab을 Keycloak SAML방식을 이용한 SSO 환경 구축</span>**
+**📌   목표 - Gitlab을 Keycloak SAML방식을 이용한 SSO 환경 구축**
 
 - 구축 환경
 
-    docker-desktop (mac) & kubernetes
+    - docker-desktop (mac) & kubernetes
 
-    **local**에서 작동
+    - **local**에서 작동
     
     [1. Keycloak pod 띄우기](#keycloak-설치)
 
@@ -16,7 +16,7 @@
 
      SAML 방식이용
 
-    4. Keycloak API 이용
+    [4. Keycloak API 이용](#keycloak 기타 설정)
 ---
 
 ### Keycloak 설치
@@ -32,7 +32,7 @@ local에서 작동하므로 ingress 없이
     Keycloak 페이지 주소 : <http://localhost:<nodeport>>
 
 2. kecloack **설치 이전**에 (keycloak을 먼저설치하면 pending상태로 지속됨)
-nginx 컨테이너 nodeport로 expose
+    nginx 컨테이너 nodeport로 expose
     저절로  loadbalancer 의 External_IP가  localhost로 설정됨
     어떻게 이렇게 작동된지는 모르겠음!! 원래 local에서는 loadbalancer실행 X
     Keycloak 페이지 주소 : http://localhost:8080
