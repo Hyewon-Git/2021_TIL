@@ -113,7 +113,7 @@ docker-desktop의 setting — resource > memory를 올려주어라!
 
          but, 우리는 Master가 아닌 MSA에서 사용할 Realm이 필요하기때문에 생성
 
-        ![SSO/img/Untitled.png](SSO%2027114887259f41778ce13513e1aa28d7/Untitled.png)
+        ![img/Untitled.png](img/Untitled.png)
 
         "Add realm"로 생성
 
