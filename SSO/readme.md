@@ -1,6 +1,6 @@
 # SSO
 
-**📌   목표 - Gitlab을 Keycloak SAML방식을 이용한 SSO 환경 구축**
+**📌   <span style="color:red">목표 - Gitlab을 Keycloak SAML방식을 이용한 SSO 환경 구축</span>**
 
 - 구축 환경
 
@@ -8,15 +8,15 @@
 
     **local**에서 작동
     
-        [1. Keycloak pod 띄우기](#keycloak-설치)
+    [1. Keycloak pod 띄우기](#keycloak-설치)
 
-        [2. gitlab pod 띄우기](#gitlab-설치)
+    [2. gitlab pod 띄우기](#gitlab-설치)
 
-        [3. Keycloak -gitlab SSO 환경구축](#keycloak---gitlab-연동)
+    [3. Keycloak -gitlab SSO 환경구축](#keycloak---gitlab-연동)
 
-            SAML 방식이용
+     SAML 방식이용
 
-        4. Keycloak API 이용
+    4. Keycloak API 이용
 ---
 
 ### Keycloak 설치
