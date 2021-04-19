@@ -6,7 +6,7 @@
 
     - docker-desktop (mac) & kubernetes
 
-    - **local**에서 작동
+    <tab> **local**에서 작동
     
     [1. Keycloak pod 띄우기](#keycloak-설치)
 
@@ -16,7 +16,7 @@
 
      SAML 방식이용
 
-    [4. Keycloak API 이용](#keycloak 기타 설정)
+    [4. Keycloak API 이용](#keycloak-기타-설정)
 ---
 
 ### Keycloak 설치
