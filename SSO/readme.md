@@ -280,7 +280,7 @@ docker-desktop의 setting — resource > memory를 올려주어라!
 
         **Body :**  
 
-        ![SSO/img/Untitled%206.png](SSO/img/Untitled%206.png)
+        ![img/Untitled%206.png](img/Untitled%206.png)
 
         ```bash
         curl --location --request POST 'http://127.0.0.1:8180/auth/realms/master/protocol/openid-connect/token' \
