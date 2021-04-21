@@ -15,32 +15,32 @@
     [3. Keycloak -gitlab SSO 환경구축](#keycloak---gitlab-연동)
      (SAML 방식이용)
      
-    [4. Keycloak Login, Register Customizing](#keycloak-기타-설정)
+    [4. Keycloak Login, Register Customizing](#keycloak-login,-register-customizing)
     
-    [5. Keycloak API 이용](#keycloak-기타-설정)
+    [5. Keycloak API 이용](#keycloak-API-이용)
 ---
 
 ## Keycloak 설치
 
 local에서 작동하므로 ingress 없이 
 
-`kubectl create -f https://raw.githubusercontent.com/keycloak/keycloak-quickstarts/latest/kubernetes-examples/keycloak.yaml`
+  `kubectl create -f https://raw.githubusercontent.com/keycloak/keycloak-quickstarts/latest/kubernetes-examples/keycloak.yaml`
 
-두가지 방법 중 선택
+  두가지 방법 중 선택
 
-1. `kubectl edit svc keycloak` 해서 loadbalancer 를 NodePort로 바꿔주던가
+  1. `kubectl edit svc keycloak` 해서 loadbalancer 를 NodePort로 바꿔주던가
 
-    Keycloak 페이지 주소 : `http://localhost:<nodeport>`
-    
-2. kecloack **설치 이전**에 (keycloak을 먼저설치하면 pending상태로 지속됨)
+      Keycloak 페이지 주소 : `http://localhost:<nodeport>`
 
-    nginx 컨테이너 nodeport로 expose
-    
-    --> 저절로  loadbalancer 의 External_IP가  localhost로 설정됨
-    
-    ~~어떻게 이렇게 작동된지는 모르겠음!! 원래 local에서는 loadbalancer실행 X~~
-    
-    Keycloak 페이지 주소 : http://localhost:8080
+  2. kecloack **설치 이전**에 (keycloak을 먼저설치하면 pending상태로 지속됨)
+
+      nginx 컨테이너 nodeport로 expose
+
+      --> 저절로  loadbalancer 의 External_IP가  localhost로 설정됨
+
+      ~~어떻게 이렇게 작동된지는 모르겠음!! 원래 local에서는 loadbalancer실행 X~~
+
+      Keycloak 페이지 주소 : http://localhost:8080
 
 ---
 ## Gitlab 설치
