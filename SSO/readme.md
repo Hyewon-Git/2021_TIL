@@ -255,6 +255,7 @@ Pod로 접속하여 KeyCloak의 설정값을 바꿔줌
 (위에서의 기본설정에서는 off 되어있음)
 
 
+
 ### **Keycloak 로그인 페이지 꾸미기**
 
 [https://www.keycloak.org/docs/latest/server_development/#scripts](https://www.keycloak.org/docs/latest/server_development/#scripts)
@@ -301,6 +302,8 @@ Pod로 접속하여 KeyCloak의 설정값을 바꿔줌
     기본은 keycloak, 예시로 보여지는 것은 base, 자신이 폴더를 생성하여 만든 "mytheme"도 카테고리에 보여질 것!
 
      ![img/Untitled%208.png](img/Untitled%208.png)
+     
+     
      
      
 ### **Keycloak User 속성 추가**
