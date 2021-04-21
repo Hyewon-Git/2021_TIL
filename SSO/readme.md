@@ -24,7 +24,7 @@
 
 local에서 작동하므로 ingress 없이 
 
-  `kubectl create -f https://raw.githubusercontent.com/keycloak/keycloak-quickstarts/latest/kubernetes-examples/keycloak.yaml`
+    `kubectl create -f https://raw.githubusercontent.com/keycloak/keycloak-quickstarts/latest/kubernetes-examples/keycloak.yaml`
 
   두가지 방법 중 선택
 
