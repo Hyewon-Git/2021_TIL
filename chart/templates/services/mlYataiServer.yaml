@@ -1,0 +1,26 @@
+{{- if .Values.modelServer.mlYataiServer.enabled -}}
+apiVersion: {{ template "daiops.service.apiVersion" . }}
+kind: Service
+metadata:
+  name: {{ template "daiops.metadata.namespace" . }}-{{ .Values.modelServer.mlYataiServer.name }}
+  namespace: {{ template "daiops.metadata.namespace" . }}
+  labels:
+    app: {{ template "daiops.metadata.namespace" . }}-{{ .Values.modelServer.mlYataiServer.name }}
+spec:
+  externalTrafficPolicy: {{ .Values.modelServer.mlYataiServer.service.externalTrafficPolicy }}
+  ports:
+  - name: web 
+    nodePort: {{ .Values.modelServer.mlYataiServer.service.ports.web.nodePort }}
+    port: {{ .Values.modelServer.mlYataiServer.service.ports.web.servicePort }}
+    protocol: TCP
+    targetPort: 3000
+  - name: grpc
+    nodePort: {{ .Values.modelServer.mlYataiServer.service.ports.grpc.nodePort }}
+    port: {{ .Values.modelServer.mlYataiServer.service.ports.grpc.servicePort }}
+    protocol: TCP
+    targetPort: 50051
+  selector:
+    app: {{ template "daiops.metadata.namespace" . }}-{{ .Values.modelServer.mlYataiServer.name }}
+  sessionAffinity: {{ .Values.modelServer.mlYataiServer.service.NsessionAffinity }}
+  type: {{ .Values.modelServer.mlYataiServer.service.type }}
+{{- end -}}

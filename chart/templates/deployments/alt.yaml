@@ -1,0 +1,36 @@
+{{- if .Values.alt.enabled -}}
+apiVersion: {{ template "daiops.deployment.apiVersion" . }}
+kind: Deployment
+metadata:
+  name: {{ template "daiops.metadata.namespace" . }}-{{ .Values.alt.name }}
+  namespace: {{ template "daiops.metadata.namespace" . }}
+spec:  
+  replicas: {{ .Values.alt.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "daiops.metadata.namespace" . }}-{{ .Values.alt.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "daiops.metadata.namespace" . }}-{{ .Values.alt.name }}
+    spec:
+      containers:
+      - name: {{ template "daiops.metadata.namespace" . }}-{{ .Values.alt.name }}
+        image: {{ .Values.registry.hostname }}:{{ .Values.registry.port }}/{{ .Values.registry.project }}/{{ .Values.alt.image.name }}:{{ .Values.alt.image.tag }}
+        imagePullPolicy: {{ .Values.alt.image.pullPolicy }}
+        livenessProbe:
+          httpGet:
+            path: {{ .Values.alt.livenessProbe }}
+            port: {{ .Values.alt.name }}-port
+        readinessProbe:
+          httpGet:
+            path: {{ .Values.alt.readinessProbe }}
+            port: {{ .Values.alt.name }}-port
+        ports:
+        - containerPort: 8008
+          name: {{ .Values.alt.name }}-port
+        {{- with .Values.alt.env }}
+        env:
+          {{- toYaml . | nindent 8 }}
+        {{- end }}
+{{- end -}}

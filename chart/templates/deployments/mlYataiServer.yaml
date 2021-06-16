@@ -1,0 +1,47 @@
+{{- if .Values.modelServer.mlYataiServer.enabled -}}
+apiVersion: {{ template "daiops.deployment.apiVersion" . }}
+kind: Deployment
+metadata:
+  name: {{ template "daiops.metadata.namespace" . }}-{{ .Values.modelServer.mlYataiServer.name }}
+  namespace: {{ template "daiops.metadata.namespace" . }}
+  labels:
+    app: {{ template "daiops.metadata.namespace" . }}-{{ .Values.modelServer.mlYataiServer.name }}
+spec:
+  replicas: {{ .Values.modelServer.mlYataiServer.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "daiops.metadata.namespace" . }}-{{ .Values.modelServer.mlYataiServer.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "daiops.metadata.namespace" . }}-{{ .Values.modelServer.mlYataiServer.name }}
+    spec:
+      volumes:
+      - name: docker
+        hostPath:
+          path: /usr/bin/docker
+      - name: docker-socket
+        hostPath:
+          path: /var/run/docker.sock
+      containers:
+      - name: {{ template "daiops.metadata.namespace" . }}-{{ .Values.modelServer.mlYataiServer.name }}
+        image: {{ .Values.registry.hostname }}:{{ .Values.registry.port}}/{{ .Values.registry.project }}/{{ .Values.modelServer.mlYataiServer.image.name }}:{{ .Values.modelServer.mlYataiServer.image.tag }}
+        {{- with .Values.modelServer.mlYataiServer.env }}
+        env:
+          {{- toYaml . | nindent 8 }}
+        {{- end }}
+        ports:
+        - containerPort: 3000
+          name: web
+        - containerPort: 50051
+          name: grpcs
+        args: 
+          {{- range .Values.modelServer.mlYataiServer.args }}
+            - {{ . }}
+          {{- end }}
+        volumeMounts:
+        - name: docker-socket
+          mountPath: /var/run/docker.sock
+        - name: docker
+          mountPath: /usr/bin/docker
+{{- end -}}

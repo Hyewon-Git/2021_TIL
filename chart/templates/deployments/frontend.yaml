@@ -1,0 +1,28 @@
+{{- if .Values.frontend.enabled -}}
+apiVersion: {{ template "daiops.deployment.apiVersion" . }}
+kind: Deployment
+metadata:
+  name: {{ template "daiops.metadata.namespace" . }}-{{ .Values.frontend.name }}
+  namespace: {{ template "daiops.metadata.namespace" . }}
+  labels:
+    app: {{ template "daiops.metadata.namespace" . }}-{{ .Values.frontend.name }}
+spec:
+  replicas: {{ .Values.frontend.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "daiops.metadata.namespace" . }}-{{ .Values.frontend.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "daiops.metadata.namespace" . }}-{{ .Values.frontend.name }}
+    spec:
+      containers:
+      - name: {{ template "daiops.metadata.namespace" . }}-{{ .Values.frontend.name }}
+        image: {{ .Values.registry.hostname }}:{{ .Values.registry.port }}/{{ .Values.registry.project }}/{{ .Values.frontend.image.name }}:{{ .Values.frontend.image.tag }}
+        ports:
+        - containerPort: 80
+        {{- with .Values.frontend.env -}}
+        env:
+          {{- toYaml . | nindent 8 -}}
+        {{- end -}}
+{{- end -}}

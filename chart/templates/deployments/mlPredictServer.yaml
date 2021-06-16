@@ -1,0 +1,25 @@
+{{- if .Values.modelServer.mlPredictServer.enabled -}}
+apiVersion: {{ template "daiops.deployment.apiVersion" . }}
+kind: Deployment
+metadata:
+  name: {{ template "daiops.metadata.namespace" . }}-{{ .Values.modelServer.mlPredictServer.name }}
+  namespace: {{ template "daiops.metadata.namespace" . }}
+  labels:
+    app: {{ template "daiops.metadata.namespace" . }}-{{ .Values.modelServer.mlPredictServer.name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "daiops.metadata.namespace" . }}-{{ .Values.modelServer.mlPredictServer.name }}
+  template:
+    metadata:
+      {{- with .Values.modelServer.mlPredictServer.annotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}   
+      labels:
+        app: {{ template "daiops.metadata.namespace" . }}-{{ .Values.modelServer.mlPredictServer.name }}
+    spec:
+      containers:
+      - image: {{ .Values.registry.hostname }}:{{ .Values.registry.port}}/{{ .Values.registry.project }}/{{ .Values.modelServer.mlPredictServer.image.name }}:{{ .Values.modelServer.mlPredictServer.image.tag }}
+        name: {{ template "daiops.metadata.namespace" . }}-{{ .Values.modelServer.mlPredictServer.name }}
+{{- end -}}

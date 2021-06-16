@@ -1,0 +1,16 @@
+{{- if .Values.backend.enabled -}}
+apiVersion: {{ template "daiops.service.apiVersion" . }}
+kind: Service
+metadata:
+  name: {{ template "daiops.metadata.namespace" . }}-{{ .Values.backend.name }}
+  namespace: {{ template "daiops.metadata.namespace" . }}
+spec:
+  selector:
+    app: {{ template "daiops.metadata.namespace" . }}-{{ .Values.backend.name }}
+  type: {{ .Values.backend.service.type }}
+  ports:
+    - protocol: TCP
+      port: {{ .Values.backend.service.servicePort }}
+      targetPort: 8009
+      nodePort: {{ .Values.backend.service.nodePort }}
+{{- end -}}

@@ -1,0 +1,183 @@
+registry:
+  hostname: cap.dudaji.com
+  port: 31480
+  project: aiops
+
+alt:
+  ## If false, node-exporter will not be installed
+  enabled: true
+  name: alt
+  replicaCount: 1
+  image:
+    name: alt
+    tag: v0.0.2
+    pullPolicy: IfNotPresent
+  livenessProbe: /liveness
+  readinessProbe: /readiness
+  env:
+    - name: TARGETIP
+      value: "cap.dudaji.com"
+    - name: RESOLUTION
+      value: "1s"
+    - name: LOGDURATION
+      value: "1m"
+    - name: RUSER
+      value: "user"
+    - name: RPW
+      valueFrom:
+        secretKeyRef:
+          key: rabbitmq-password
+          name: daiops-rabbitmq
+    - name: RHOST
+      value: "daiops-rabbitmq.daiops.svc.cluster.local"
+    - name: RPORT
+      value: "5672"
+    - name: RVHOST
+      value: "aiops_logs"
+    - name: RQUEUE
+      value: "t_msg_q"
+
+frontend:
+  enabled: true
+  name: frontend
+  replicaCount: 1
+  image:
+    name: aiops-frontend
+    tag: 0.0.2-05a423a5
+    pullPolicy: IfNotPresent
+  env: {}
+  # - name: BACKEND_HOST
+  #   value: ""
+  # - name: BAKCEND_PORT
+  #   value: ""
+  service:
+    type: NodePort
+    servicePort: 80
+    nodePort: 30949
+
+backend:
+  ## If false, node-exporter will not be installed
+  enabled: true
+  name: backend
+  replicaCount: 1
+  annotations:
+    sidecar.istio.io/inject: "false"
+  image:
+    name: aiops-backend
+    tag: v0.0.2
+    pullPolicy: IfNotPresent
+  livenessProbe: /liveness
+  readinessProbe: /readiness
+  env:
+    - name: DBHOST
+      value: "daiops-influxdb.daiops"
+    - name: DBPORT
+      value: "8086"
+    - name: DBUSER
+      value: "admin"
+    - name: DBPW
+      value: ""
+    - name: DBTABLE
+      value: "chaosprob-0528"
+  service:
+    type: NodePort
+    servicePort: 8009
+    nodePort: 30804
+
+modelServer:
+  mlYataiServer:
+    ## If false, node-exporter will not be installed
+    enabled: true
+    name: yatai-server
+    replicaCount: 1
+    image:
+      name: bentoml/yatai-service
+      tag: latest
+    env:
+      - name: AWS_SECRET_ACCESS_KEY
+        value: McflZThPVQM9gtj4C4OzH1VI1lOwq57Lr1My0zrq
+      - name: AWS_ACCESS_KEY_ID
+        value: ZWdjMRL0lmBZWT7yRq3X
+    args:
+      [
+        "--db-url",
+        "postgresql://postgres:yataidb@cap.dudaji.com:31815/bentomldb",
+        "--repo-base-url",
+        "s3://bentoml-repo",
+        "--s3-endpoint-url",
+        "http://cap.dudaji.com:30064",
+      ]
+      # --set modelServer.mlYataiServer.args={arg1,arg2}
+    service:
+      externalTrafficPolicy: Cluster
+      type: NodePort
+      sessionAffinity: None
+      ports:
+        web:
+          servicePort: 3000
+          nodePort: 30063
+        grpc:
+          servicePort: 50051
+          nodePort: 32431
+
+  mlPredictServer:
+    ## If false, node-exporter will not be installed
+    enabled: true
+    name: predict-server
+    annotations:
+      sidecar.istio.io/inject: "false"
+    image:
+      name: predict-server
+      tag: 202106070-aed0b60-kb
+    service:
+      type: ClusterIP
+      ports:
+        predict:
+          servicePort: 5000
+
+  mlProcessServer:
+    ## If false, node-exporter will not be installed
+    enabled: true
+    name: process-server
+    replicaCount: 1
+    image:
+      name: process-server
+      tag: 20210610-9918f6e-kb
+      pullPolicy: IfNotPresent
+      resources:
+        {}
+        # limits:
+        #     nvidia.com/gpu: "1"
+    env:
+      - name: RESOLUTION
+        value: "1"
+      - name: Q_IP
+        value: "daiops-rabbitmq.daiops.svc.cluster.local"
+      - name: Q_PORT
+        value: "5672"
+      - name: Q_VHOST
+        value: "aiops_logs"
+      - name: Q_NAME
+        value: "t_msg_q"
+      - name: Q_ID
+        value: "user"
+      - name: P_SERVICE
+        value: "http://daiops-predict-server.daiops"
+      - name: Q_PW
+        valueFrom:
+          secretKeyRef:
+            name: daiops-rabbitmq
+            key: rabbitmq-password
+      - name: Q_ERLANG_COOKIE
+        valueFrom:
+          secretKeyRef:
+            name: daiops-rabbitmq
+            key: rabbitmq-erlang-cookie
+      - name: IF_DB
+        value: "aiops"
+      - name: IF_HOST
+        value: "daiops-influxdb.daiops"
+      - name: IF_PORT
+        value: "8086"
+      - name: IF_USER
+        value: "admin"
