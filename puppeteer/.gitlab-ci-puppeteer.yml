@@ -1,0 +1,47 @@
+stages:
+  - test
+  - build
+  - .post 
+
+variables:
+  AIOPS_PUPPETEER_LOCALDIR: './puppeteer'
+  AIOPS_PUPPETEER_REGISTRY: 'cap.dudaji.com:31480/aiops/ci/puppeteer'
+
+test-puppeteer-variable:
+  stage: test
+  script:
+    - echo "Check puppeteer variables"
+    - echo $CI_BUILDS_DIR
+    - echo $CI_PROJECT_DIR 
+    - echo $CI_COMMIT_BRANCH
+    - echo $CI_COMMIT_MESSAGE
+    - echo $CI_COMMIT_SHORT_SHA
+    - echo $GITLAB_USER_LOGIN
+    - echo $GITLAB_USER_EMAIL
+    - echo $AIOPS_PUPPETEER_LOCALDIR
+    - echo $AIOPS_PUPPETEER_REGISTRY
+    - echo $CI_COMMIT_TIMESTAMP
+  only:
+    refs:
+      - develop
+      - master
+      - feature/new-ci-cd
+    changes:
+      - "puppeteer/**/*"
+
+build-puppeteer-image:
+  stage: build
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
+  script:
+    - mkdir -p /kaniko/.docker
+    - echo "{\"auths\":{\"$AIOPS_HARBOR_REGISTRY\":{\"username\":\"$AIOPS_HARBOR_USERNAME\",\"password\":\"$AIOPS_HARBOR_PASSWORD\"}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor --build-arg BRANCH=$CI_BUILD_REF_NAME --context $AIOPS_PUPPETEER_LOCALDIR --dockerfile $AIOPS_PUPPETEER_LOCALDIR/Dockerfile --destination $AIOPS_PUPPETEER_REGISTRY:$CI_COMMIT_SHORT_SHA-$GITLAB_USER_LOGIN
+  only:
+    refs:
+      - develop
+      - master
+      - feature/new-ci-cd
+    changes:
+      - "puppeteer/**/*"
