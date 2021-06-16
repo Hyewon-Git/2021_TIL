@@ -1,0 +1,6 @@
+{
+    "go.lintOnSave": true,             // 파일 저장시 linter 실행 
+    "go.lintTool": "golint",           // liter tool로 golint 사용 
+    "go.formatTool": "goreturns",      // formatter로 goreturns 사용 
+    "editor.formatOnSave": true,       // 파일 저장시 formatter 실행 
+  }
