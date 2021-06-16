@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aiops-pupeteer
+  namespace: aiops
+  labels:
+    app: puppeteer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: puppeteer
+  template:
+    metadata:
+      labels:
+        app: puppeteer
+    spec:
+      containers:
+        - name: puppeteer
+          image: cap.dudaji.com:31480/aiops/cap-activity-automation:v0.0.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          env:
+            - name: TARGET_SERVER
+              value: "http://104.154.100.74:31380"
