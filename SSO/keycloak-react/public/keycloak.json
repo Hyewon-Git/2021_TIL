@@ -1,0 +1,8 @@
+{
+    "realm": "dudaji-100",
+    "auth-server-url": "https://hw2.dudaji.com:8443/auth",
+    "ssl-required": "external",
+    "resource": "my-react-client",
+    "public-client": true,
+    "confidential-port": 0
+  }
