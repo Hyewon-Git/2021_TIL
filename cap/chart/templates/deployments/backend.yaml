@@ -1,0 +1,40 @@
+{{- if .Values.backend.enabled -}}
+apiVersion: {{ template "daiops.deployment.apiVersion" . }}
+kind: Deployment
+metadata:
+  name: {{ template "daiops.metadata.namespace" . }}-{{ .Values.backend.name }}
+  namespace: {{ template "daiops.metadata.namespace" . }}
+spec:  
+  replicas: {{ .Values.backend.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "daiops.metadata.namespace" . }}-{{ .Values.backend.name }}
+  template:
+    metadata:
+      {{- with .Values.backend.annotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        app: {{ template "daiops.metadata.namespace" . }}-{{ .Values.backend.name }}
+    spec:
+      containers:
+      - name: {{ template "daiops.metadata.namespace" . }}-{{ .Values.backend.name }}
+        image: {{ .Values.registry.hostname }}:{{ .Values.registry.port }}/{{ .Values.registry.project }}/{{ .Values.backend.image.name }}:{{ .Values.backend.image.tag }}
+        imagePullPolicy: {{ .Values.backend.image.pullPolicy }}
+        livenessProbe:
+          httpGet:
+            path: {{ .Values.backend.livenessProbe }}
+            port: {{ .Values.backend.name }}-port
+        readinessProbe:
+          httpGet:
+            path: {{ .Values.backend.readinessProbe }}
+            port: {{ .Values.backend.name }}-port
+        ports:
+        - containerPort: 8009
+          name: {{ .Values.backend.name }}-port
+        {{- with .Values.backend.env }}
+        env:
+          {{- toYaml . | nindent 8 }}
+        {{- end }}
+{{- end -}}
